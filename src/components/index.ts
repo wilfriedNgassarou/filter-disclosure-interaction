@@ -6,3 +6,4 @@ export { ReminderSVG } from './svgs/reminder'
 export { TaskSVG } from './svgs/task'
 
 export { ListItem } from './list-item'
+export { Credits } from './credits'

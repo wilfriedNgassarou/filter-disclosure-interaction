@@ -30,7 +30,7 @@ export function ListItem({ index, item, activeItem, setIsOpened, setActiveItem }
       }}
       className="px-3 py-2 rounded-lg flex justify-between items-center cursor-default hover:bg-gray-400/10"
     >
-      <div className="flex items-center gap-x-2">
+      <div className="flex items-center gap-x-3">
         <span>
           <item.Icon size={24} />
         </span>

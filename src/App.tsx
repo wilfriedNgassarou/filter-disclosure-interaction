@@ -2,7 +2,7 @@ import { useState } from "react"
 import { motion, MotionConfig } from "motion/react"
 
 import { FilterKey, filterKeys } from "./contants"
-import { ListItem } from "./components"
+import { Credits, ListItem } from "./components"
 
 function App() {
   const [activeItem, setActiveItem] = useState<FilterKey>(filterKeys[0])
@@ -10,6 +10,7 @@ function App() {
 
   return (
     <section className="w-full h-dvh flex justify-center items-center fill-gray-600/70">
+      <Credits />
       <MotionConfig transition={{ type: 'spring', duration: .85, bounce: .35 }}>
         <div
           onClick={() => setIsOpened(true)} 

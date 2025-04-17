@@ -1,28 +1,25 @@
 import { motion } from "motion/react";
-import { FilterKey } from "../contants";
+import { FilterKey } from "../constants";
 import { Dispatch, SetStateAction } from "react";
 import clsx from "clsx";
 
-export function ListItem({ index, item, activeItem, setIsOpened, setActiveItem }: {
+export function ListItem(props: {
   index: number
-  item: FilterKey
-  activeItem: FilterKey
-  setActiveItem: Dispatch<SetStateAction<FilterKey>>
+  filterKey: FilterKey
+  selectedFilterKey: FilterKey
+  setSelectedFilterKey: Dispatch<SetStateAction<FilterKey>>
   setIsOpened: Dispatch<SetStateAction<boolean>>
 }) {
-
+  const { index, filterKey, selectedFilterKey, setSelectedFilterKey, setIsOpened } = props
   const delay = ((index + 10) * 0.035)
   
   return (
     <motion.div 
-      key={item.name}
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{
-        type: 'spring', bounce: .1, duration: .65, delay
-      }}
+      transition={{ type: 'spring', bounce: .1, duration: .65, delay }}
       onClick={() => {
-        setActiveItem(item)
+        setSelectedFilterKey(filterKey)
 
         setTimeout(() => {
           setIsOpened(false)
@@ -32,17 +29,17 @@ export function ListItem({ index, item, activeItem, setIsOpened, setActiveItem }
     >
       <div className="flex items-center gap-x-3">
         <span>
-          <item.Icon size={24} />
+          <filterKey.Icon size={24} />
         </span>
-        <span className="capitalize">{item.name}</span>
+        <span className="capitalize">{filterKey.name}</span>
       </div>
       <div 
         className={clsx(
           "relative border-gray-500 w-6 h-6 overflow-hidden rounded-full",
-          activeItem.name == item.name ? "border-none" : "border-[2px]"
+          selectedFilterKey.name == filterKey.name ? "border-none" : "border-[2px]"
         )}
       >
-        {activeItem.name == item.name && (
+        {selectedFilterKey.name == filterKey.name && (
           <div className="absolute inset-0 bg-green-500 flex justify-center items-center">
             <svg
               strokeLinecap="round"

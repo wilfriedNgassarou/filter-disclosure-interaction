@@ -1,11 +1,11 @@
 import { useState } from "react"
 import { motion, MotionConfig } from "motion/react"
 
-import { FilterKey, filterKeys } from "./contants"
+import { filterKeys } from "./constants"
 import { Credits, ListItem } from "./components"
 
 function App() {
-  const [activeItem, setActiveItem] = useState<FilterKey>(filterKeys[0])
+  const [selectedFilterKey, setSelectedFilterKey] = useState(filterKeys[0])
   const [isOpened, setIsOpened] = useState(false)
 
   return (
@@ -40,7 +40,7 @@ function App() {
           transition={{ type: 'spring', bounce: .3 , duration: 1.5 }}
           className="relative right-2.5 w-20 h-20 border-[1px] rounded-full flex justify-center items-center"
         >
-          <activeItem.Icon size={36} />
+          <selectedFilterKey.Icon size={36} />
         </motion.div>
 
         {isOpened && (
@@ -52,10 +52,10 @@ function App() {
             {filterKeys.map((item, index) => (
               <ListItem
                 key={item.name}
-                index={index} 
-                item={item}
-                activeItem={activeItem}
-                setActiveItem={setActiveItem}
+                index={index}
+                filterKey={item}
+                selectedFilterKey={selectedFilterKey}
+                setSelectedFilterKey={setSelectedFilterKey}
                 setIsOpened={setIsOpened}
               />
             ))}
